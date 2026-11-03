@@ -1,0 +1,11 @@
+{
+  "moodle_url": "https://lernen.h-da.de",
+  "stundenplan_ics": "",
+  "mail": {
+    "address": "",
+    "user": "",
+    "name": "",
+    "smtp": "smtp.stud.h-da.de",
+    "imap": "imap.stud.h-da.de"
+  }
+}

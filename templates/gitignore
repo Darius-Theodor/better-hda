@@ -1,0 +1,4 @@
+# Kursmaterial aus Moodle nie in ein Repo
+**/moodle/files/
+**/moodle/changes.log
+.DS_Store
