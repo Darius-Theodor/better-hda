@@ -73,6 +73,8 @@ Daraus folgt für jeden Arbeitsblock:
 5. Nichts gilt als fertig, bevor der Nutzer es verstanden hat und das Ergebnis geprüft wurde
    (Bild angesehen, Ausgabe gelesen, Test gelaufen). Ein Skript, das durchläuft, ist kein Beweis.
 6. Umfragen, Abgaben, Tests und Forenbeiträge in Moodle sendet nie der Agent ab.
+7. Forenbeiträge und Namen anderer Personen (Dozenten, Mitstudierende) werden gelesen, aber
+   nicht in Lerndokumente, `SEMESTER.md` oder andere Dateien übernommen.
 
 Dokumente: Zustand für den Agenten (`SEMESTER.md`, `LERNPFAD.md` je Kurs) ist Markdown. Alles,
 was der Nutzer liest und woraus er lernt, ist eine einzelne HTML-Datei nach

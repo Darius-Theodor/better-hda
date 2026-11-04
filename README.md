@@ -36,6 +36,28 @@ im Ordner `~/hda` starten und „was steht an“ sagen.
 - Kursmaterial liegt unter `<kurs>/moodle/files/` und ist per `.gitignore` von Repos
   ausgeschlossen.
 
+## Was better-hda ist und nicht ist
+
+better-hda ist ein privates Projekt eines Studenten und kein Angebot der Hochschule Darmstadt.
+Die Scripts nutzen dieselbe Schnittstelle wie die offizielle Moodle-App, mit deinem eigenen
+Konto und nur für deine Kurse. Es wird nichts in großen Mengen heruntergeladen und nichts an
+Dritte geschickt: Das Script spricht nur mit lernen.h-da.de und, beim Mailen, mit dem Mailserver
+der h-da. Für die Nutzung gelten die Regeln der Hochschule, so wie bei jedem anderen Zugang zu
+Moodle auch.
+
+## Welches Modell deine Unterlagen sieht
+
+better-hda ist nur der Ordner und die Werkzeuge. Welcher Agent und welches Modell darin
+arbeitet, entscheidest du; der Ordner ist an keinen gebunden.
+
+Die h-da stellt allen Studierenden eigene Modelle bereit (siehe ki.h-da.de, Zugang über den
+KI-Führerschein der Hochschule). Sie laufen auf Hochschulservern in Deutschland, und mit
+OpenCode funktioniert der Ordner damit genauso wie mit jedem anderen Agenten. Für
+Vorlesungsfolien, Aufgabenblätter und Forenbeiträge ist das der naheliegende Weg: Das Material
+bleibt bei der Hochschule, bei der es ohnehin liegt. Wer einen externen Anbieter nutzt, trägt
+dafür selbst die Verantwortung; Kursmaterial ist urheberrechtlich geschützt, und Forenbeiträge
+enthalten Namen anderer Leute.
+
 ## Danach
 
 - „Stundenplan einrichten“: Der Agent trägt den iCal-Link deines QIS-Stundenplans ein, dann
