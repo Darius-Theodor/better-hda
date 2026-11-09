@@ -16,8 +16,9 @@ Fenster öffnet oder länger dauert, in einem Satz, was passiert.
 
 ## Dateien des Skills
 
-`SKILL_DIR` ist der Ordner dieser Datei (aufgelöst, nicht der Symlink; bei Installation über
-`npx skills` meist `~/.agents/skills/better-hda`). Dort:
+`SKILL_DIR` ist der Ordner dieser Datei (aufgelöst, nicht der Symlink). Meist ist das ein
+temporärer Ordner, in den du das Repo eben geladen hast; bei Installation als Skill etwa
+`~/.agents/skills/better-hda` oder `~/.claude/skills/better-hda`. Dort:
 
 - `scripts/`: `credentials.py` (Passwortfenster und Schlüsselbund je System), `moodle.py`
   (Moodle-API: login, courses, sync, sections, fetch, news, deadlines), `mail.py` (Versand von
@@ -39,13 +40,15 @@ Alle Befehle unten mit `python3`; auf Windows `python`.
 1. **Voraussetzung prüfen.** `python3 --version` (Windows `python --version`). Fehlt Python
    oder ist es älter als 3.9: installieren (macOS `brew install python` oder
    `xcode-select --install`, Windows `winget install Python.Python.3.12`, Debian/Ubuntu
-   `sudo apt install python3`). Node wird nach der Installation des Skills nicht mehr gebraucht.
+   `sudo apt install python3`). Auf Windows zusätzlich `python -m pip install tzdata`
+   (Zeitzonendaten für den Stundenplan). Node und Git werden danach nicht mehr gebraucht.
 2. **Ordner anlegen.** Zielordner `~/hda` (Windows `%USERPROFILE%\hda`). Existiert er und ist
    nicht leer, einmal fragen, ob er benutzt werden soll; sonst ohne Frage anlegen. Darin:
    `tools/`, `vorlagen/`, `kursregeln/`. Kopieren: `scripts/*` nach `tools/`,
    `templates/config.json` nach `tools/config.json`, `templates/lernmodus.md` nach
-   `kursregeln/lernmodus.md`, `templates/kursregeln.md` und `templates/lern-dokument.html`
-   nach `vorlagen/`, `templates/gitignore` nach `.gitignore`. `AGENTS.md`, `CLAUDE.md`,
+   `kursregeln/lernmodus.md`, `templates/kursregeln.md`, `templates/lern-dokument.html` und
+   `templates/lernmodus.md` nach `vorlagen/` (die Kopie dort ist der Vergleich beim
+   Aktualisieren), `templates/gitignore` nach `.gitignore`. `AGENTS.md`, `CLAUDE.md`,
    `SEMESTER.md` und `courses.json` entstehen in den Schritten unten aus den Vorlagen.
 3. **Moodle-Login.** Sag dem Nutzer: Es öffnet sich ein Fenster, dort h-da-Kennung und
    Passwort eintippen; das Passwort wird nur einmal benutzt und nie gespeichert, es entsteht
@@ -67,8 +70,8 @@ Alle Befehle unten mit `python3`; auf Windows `python`.
    Kommunikationskanäle. Lade dabei **keine** Dateien.
 6. **Semesterstand und Anleitung schreiben.** `SEMESTER.md` nach `templates/SEMESTER.md`,
    nur Fakten aus Moodle; was Moodle nicht sagt, steht als „offen“. `AGENTS.md` nach
-   `templates/AGENTS.md`: Semester (z. B. „WS 2026/27“), Kurstabelle, `<REPO_URL>` durch die
-   Quelle dieses Skills ersetzen (steht in `README.md` des Skills). `CLAUDE.md` aus der
+   `templates/AGENTS.md`: Semester (z. B. „WS 2026/27“), Kurstabelle, `<REPO_URL>` durch
+   `https://github.com/Darius-Theodor/better-hda`. `CLAUDE.md` aus der
    Vorlage. Lernmodus bleibt überall „aus“.
 7. **Mail einrichten.** Aus `python3 tools/moodle.py whoami` kommen Name und Kennung. Trage in
    `tools/config.json` unter `mail` ein: `user` = Kennung, `name` = voller Name, `address` =
@@ -78,10 +81,12 @@ Alle Befehle unten mit `python3`; auf Windows `python`.
    `python3 tools/mail.py login`. Scheitert die Anmeldung, frag einmal nach der richtigen
    h-da-Mailadresse, trag sie ein und versuch es erneut; scheitert es wieder, lass Mail aus
    und notiere in `SEMESTER.md` unter Offen: „Mail einrichten: `python3 tools/mail.py login`“.
-8. **Skill entfernen.** Der Ordner ist jetzt eigenständig, der Skill würde nur bei jedem
-   Sitzungsstart Kontext kosten. Installiert über `npx skills`:
-   `npx skills remove better-hda -g -y`; sonst den Skill-Ordner und einen etwaigen Symlink
-   darauf in `~/.claude/skills/` oder `~/.codex/skills/` löschen. Ein Satz an den Nutzer dazu.
+8. **Aufräumen.** Der Ordner ist jetzt eigenständig, `SKILL_DIR` wird nicht mehr gebraucht.
+   War es ein temporärer Ordner: löschen. War es ein installierter Skill (er würde sonst bei
+   jedem Sitzungsstart Kontext kosten): über `npx skills` installiert
+   `npx skills remove better-hda -g -y`, sonst den Skill-Ordner und einen etwaigen Symlink
+   darauf in `~/.claude/skills/`, `~/.agents/skills/` oder `~/.codex/skills/` löschen. Ein
+   Satz an den Nutzer dazu.
 9. **Abschluss.** Kurze Zusammenfassung: Ordnerpfad, welche Kurse, was aus Moodle schon
    bekannt ist, dass Mail geht (oder offen ist), und dass „Stundenplan einrichten“ und
    „Lernmodus für <kurs> an“ später jederzeit möglich sind. Dann direkt den Einstieg aus der
@@ -90,8 +95,10 @@ Alle Befehle unten mit `python3`; auf Windows `python`.
 ## Aktualisieren
 
 `scripts/*` nach `tools/` und `templates/kursregeln.md`, `templates/lern-dokument.html` nach
-`vorlagen/` kopieren, `templates/lernmodus.md` nach `kursregeln/lernmodus.md` nur, wenn die
-Datei dort unverändert zur alten Vorlage ist. `config.json`, `courses.json`, `SEMESTER.md`,
+`vorlagen/` kopieren. `templates/lernmodus.md`: Ist `kursregeln/lernmodus.md` identisch mit
+`vorlagen/lernmodus.md` (also vom Nutzer nicht verändert), beide ersetzen; sonst nur
+`vorlagen/lernmodus.md` ersetzen und dem Nutzer in einem Satz sagen, dass seine angepasste
+Fassung bleibt. Fehlt `vorlagen/lernmodus.md` (ältere Einrichtung), nur dorthin kopieren. `config.json`, `courses.json`, `SEMESTER.md`,
 `AGENTS.md`, Kursordner und Kursregeln bleiben unangetastet. Danach Schritt 8 und ein Satz,
 was sich geändert hat.
 

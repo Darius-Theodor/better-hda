@@ -135,6 +135,6 @@ werden immer vollständig erklärt.
 ## better-hda
 
 Dieser Ordner wurde von better-hda eingerichtet (<REPO_URL>). Sagt der Nutzer „better-hda
-aktualisieren“, lädt der Agent die aktuellen Scripts aus dem Repo nach `tools/` und die
-Vorlagen nach `vorlagen/`; `config.json`, `courses.json`, `SEMESTER.md`, Kursordner und
-Kursregeln bleiben unangetastet. Zugangsdaten löschen: `moodle.py logout`, `mail.py logout`.
+aktualisieren“, lädt der Agent das Repo in einen temporären Ordner, führt dort den Abschnitt
+„Aktualisieren“ der `SKILL.md` aus und löscht den temporären Ordner wieder. `config.json`,
+`courses.json`, `SEMESTER.md`, Kursordner und Kursregeln bleiben dabei unangetastet. Zugangsdaten löschen: `moodle.py logout`, `mail.py logout`.

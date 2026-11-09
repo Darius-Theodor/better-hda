@@ -1,28 +1,26 @@
 # better-hda
 
-Dein Agent organisiert dein Studium an der Hochschule Darmstadt: Er liest Moodle
+Kopier diesen Satz in deinen Coding-Agenten (Claude Code, Codex, OpenCode oder einen anderen),
+mehr brauchst du nicht:
+
+```
+Richte better-hda für mich ein: Lade https://github.com/Darius-Theodor/better-hda in einen temporären Ordner (git clone oder ZIP), lies dort SKILL.md und führe sie vollständig aus.
+```
+
+## Was dann passiert
+
+Dein Agent organisiert ab dann dein Studium an der Hochschule Darmstadt: Er liest Moodle
 (lernen.h-da.de), merkt, was neu ist, holt Material nur bei Bedarf, führt den Stand je Kurs
 und schlägt vor, was als Nächstes sinnvoll ist. Mails an Dozenten gehen von deiner
-h-da-Adresse, nach Vorschau und Okay. Du kommst, wenn du Zeit hast, sagst „was steht an“ und
-fängst an.
+h-da-Adresse, nach Vorschau und Okay.
 
-## Einrichten
+Bei der Einrichtung macht der Agent alles selbst. Zweimal öffnet sich ein Fenster: zuerst für
+Moodle (h-da-Kennung und Passwort), dann für Mail (noch einmal dasselbe Passwort). Am Ende hast
+du einen Ordner `~/hda` mit einem Unterordner je Kurs, einem Semesterstand und einer Anleitung
+für den Agenten; der heruntergeladene Ordner wird wieder gelöscht. Ab dann startest du den
+Agenten im Ordner `~/hda`, wenn du Zeit hast, und sagst „was steht an“.
 
-Du brauchst einen Coding-Agenten (Claude Code, Codex oder ein anderer, der Skills versteht).
-Sag ihm:
-
-```
-Installier npx skills add Darius-Theodor/better-hda -g und richte better-hda für mich ein.
-```
-
-Ohne Node: „Klon https://github.com/Darius-Theodor/better-hda nach ~/.claude/skills/better-hda und
-richte better-hda für mich ein.“
-
-Dann passiert alles von selbst. Zweimal öffnet sich ein Fenster, in das du deine h-da-Kennung
-und dein Passwort tippst: einmal für Moodle, einmal für Mail. Am Ende hast du einen Ordner
-`~/hda` mit einem Unterordner je Kurs, einem Semesterstand und einer Anleitung für den
-Agenten. Der Skill löscht sich danach selbst; alles Weitere steht im Ordner. Ab dann: Agenten
-im Ordner `~/hda` starten und „was steht an“ sagen.
+Fehlt Python, installiert der Agent es (dafür kann er nach deinem Systempasswort fragen).
 
 ## Was gespeichert wird und wo
 
