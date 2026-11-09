@@ -14,11 +14,14 @@ import os
 import sys
 import urllib.request
 from pathlib import Path
-from zoneinfo import ZoneInfo
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 ROOT = Path(os.environ.get("HDA_ROOT") or Path(__file__).resolve().parent.parent)
 CONFIG_PATH = ROOT / "tools" / "config.json"
-LOCAL = ZoneInfo("Europe/Berlin")
+try:
+    LOCAL = ZoneInfo("Europe/Berlin")
+except ZoneInfoNotFoundError:  # Windows bringt keine Zeitzonendaten mit
+    sys.exit("Zeitzonendaten fehlen. Einmal `python -m pip install tzdata` ausführen.")
 WEEKDAYS = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"]
 
 

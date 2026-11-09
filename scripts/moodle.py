@@ -245,7 +245,8 @@ def cmd_sync(args):
 
 
 def local_file(c, s, f):
-    sec = f"{s['section']:02d}-{re.sub(r'[^\w.-]+', '_', s['name'])[:40]}"
+    name = re.sub(r"[^\w.-]+", "_", s["name"])[:40]
+    sec = f"{s['section']:02d}-{name}"
     return c["path"] / "files" / sec / f["filepath"].strip("/") / f["filename"]
 
 
